@@ -58,6 +58,10 @@ class ResMeditationService {
         const cursor = await this.ResMeditation.find({});
         return await cursor.toArray();
     }
+    async deleteAll() {
+        const result = await this.ResMeditation.deleteMany({});
+        return result.deletedCount;
+    }
 
     async findByStatus(status) {
         return await this.ResMeditation.find({

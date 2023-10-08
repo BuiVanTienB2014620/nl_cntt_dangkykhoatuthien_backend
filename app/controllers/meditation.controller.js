@@ -98,3 +98,17 @@ exports.deleteAll = async (req, res, next) => {
 };
 
 
+exports.findGiangSuId = async (req, res, next) => {
+    try {
+        const meditationService = new MeditationService(MongoDB.client);
+        const { idGiangSu } = req.query;
+        if (!idGiangSu) {
+            return next(new ApiError(400, "Thiếu idGiangSu trong yêu cầu"));
+        }
+        const documents = await meditationService.findGiangSuId(idGiangSu);
+        return res.send(documents);
+    } catch (error) {
+        console.error(error);
+        return next(new ApiError(500, "Đã xảy ra lỗi khi truy xuất danh sách theo idGiangSu"));
+    }
+};

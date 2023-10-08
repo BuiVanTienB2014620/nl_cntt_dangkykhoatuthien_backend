@@ -51,6 +51,11 @@ class ProMeditationService {
         });
         return result.value;
     }
+    async deleteAll() {
+        const result = await this.ProMeditation.deleteMany({});
+        return result.deletedCount;
+    }
+
 
     async findAll() {
         const cursor = await this.ProMeditation.find({});

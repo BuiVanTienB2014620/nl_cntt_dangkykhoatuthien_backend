@@ -58,18 +58,19 @@ class MeditationService {
         const cursor = await this.Meditation.find({});
         return await cursor.toArray();
     }
-
-    async findByTheme(theme) {
-        return await this.Meditation.find({
-            chuDe: { $regex: new RegExp(theme), $options: "i" },
-        });
+    async deleteAll() {
+        const result = await this.Meditation.deleteMany({});
+        return result.deletedCount;
     }
 
-    async findByName(name) {
-        return await this.Meditation.find({
-            tenKhoaTu: { $regex: new RegExp(name), $options: "i" },
+    async findByGiangSuId(idGiangSu) {
+        const cursor = await this.Meditation.find({
+            idGiangSu: ObjectId.isValid(idGiangSu) ? new ObjectId(idGiangSu) : null,
         });
+        return await cursor.toArray();
     }
+
+    
 }
 
 module.exports = MeditationService;
