@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/meditations", meditationRouter); // Thay đổi đường dẫn cho route của Meditation
 app.use("/api/res-meditations", resMeditionRouter);
-app.use("/api/promeditations", proMeditationRouter);
+app.use("/api/pro-meditations", proMeditationRouter);
 app.use("/api/schedules", scheduleRouter);
 app.use("/api/qa-a", qaARouter);
 app.use("/api/monks", monksRouter);
