@@ -67,6 +67,22 @@ exports.delete = async (req, res, next) => {
     );
   }
 };
+exports.deleteAll = async (req, res, next) => {
+  try {
+    const orderService = new OrderService(MongoDB.client);
+    const result = await orderService.deleteAll();
+    
+    // Kiểm tra xem có bản ghi nào bị xóa không
+    if (result.deletedCount === 0) {
+      return res.send({ message: "No cart items found to delete" });
+    }
+
+    return res.send({ message: "All cart items were deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    return next(new ApiError(500, "An error occurred while deleting all cart items"));
+  }
+};
 
 exports.findAll = async (req, res, next) => {
   try {

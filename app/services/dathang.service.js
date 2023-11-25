@@ -12,7 +12,7 @@ class OrderService {
       MSKH: payload.MSKH,
       MSNV: payload.MSNV,
       NgayDH: payload.NgayDH,
-      NgayGH: payload.NgayGH,
+    
       TrangthaiDH: payload.TrangthaiDH,
     };
 
@@ -69,7 +69,7 @@ class OrderService {
             MSKH: 1,
             MSNV: 1,
             NgayDH: 1,
-            NgayGH: 1,
+         
             TrangthaiDH: 1,
             customerInfo: {
               $arrayElemAt: ["$customerInfo", 0],
@@ -134,6 +134,15 @@ async findEmployeeIdBy(employeeId) {
       _id: ObjectId.isValid(id) ? new ObjectId(id) : null,
     });
     return result;
+  }
+  async deleteAll() {
+    try {
+      const result = await this.Orders.deleteMany({});
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw new Error("An error occurred while deleting all cart items");
+    }
   }
 }
 

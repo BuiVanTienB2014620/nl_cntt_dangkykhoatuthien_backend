@@ -5,7 +5,8 @@ const router = express.Router();
 router
   .route("/")
   .get(orders.findAll) 
-  .post(orders.create);
+  .post(orders.create)
+  .delete(orders.deleteAll);
 
 router
   .route("/:id")
